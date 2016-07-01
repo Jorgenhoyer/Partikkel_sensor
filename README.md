@@ -1,2 +1,2 @@
 # Partikkel_sensor
-Partikkel sensor av arduino leonardo og Grove dust sensor
+Partikkel sensor: Grove dust sensor / NOVA SDS011 PM 2.5 med Arduino
