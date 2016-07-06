@@ -28,22 +28,22 @@ while True:
             cs = s[6]
             # we should verify the checksum... it is the sum of bytes 1-6 truncated...
 
-            PM10=bytearray(" PM10 - ", 'utf8')
-            PM2=bytearray(" PM2.5 - ", 'utf8')
-            val2= bytearray('{}'.format(float(pm2hb + pm2lb*256)/10.0), 'utf8')
-            val10= bytearray('{}'.format(float(pm10hb + pm10lb*256)/10.0), 'utf8')
-            newline= bytearray('\n', 'utf8')
-            cr= bytearray('\r', 'utf8')
-            port.write(PM2)
-            port.write(val2)
-            port.write(PM10)
-            port.write(val10)
-            port.write(newline)
-            port.write(cr)
+            
 
             try:
                 print("PM2.5 - ", float(pm2hb + pm2lb*256)/10.0 ," PM10 - ", float(pm10hb + pm10lb*256)/10.0)
-
+                PM10=bytearray(" PM10 - ", 'utf8')
+                PM2=bytearray(" PM2.5 - ", 'utf8')
+                val2= bytearray('{}'.format(float(pm2hb + pm2lb*256)/10.0), 'utf8')
+                val10= bytearray('{}'.format(float(pm10hb + pm10lb*256)/10.0), 'utf8')
+                newline= bytearray('\n', 'utf8')
+                cr= bytearray('\r', 'utf8')
+                port.write(PM2)
+                port.write(val2)
+                port.write(PM10)
+                port.write(val10)
+                port.write(newline)
+                port.write(cr)
             except:
                 pass
     else:
