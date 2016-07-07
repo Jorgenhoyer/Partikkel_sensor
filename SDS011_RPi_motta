@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+#Dette programmet leser av innkommende bytes paa RPi serialport ttyAMA0,
+#dekoder dataen og skriver den til en fil med et timestamp.
+
+from time import gmtime, strftime
+
+import serial
+import time
+f = open('sds011_logg.txt', 'w')
+ser = serial.Serial("/dev/ttyAMA0", baudrate=9600, stopbits=1, parity="N", timeout=1)
+
+while True:
+
+        tid = strftime("%Y-%m-%d %H:%M:%S")
+        in_data = ser.readline()
+        dekodet = in_data.decode('utf8')
+        #print ('Received: {0}\n'.format(str(in_data)))
+        #print(format(str(in_data)))
+        print(dekodet)
+        print(tid)
+        f.write(tid)
+
+        f.write(dekodet) #skriv til fil
+        f.write('\n\r')
+        f.close()
+        f=open('sds011_logg.txt', 'a')
+
+
+ser.close()
+ser.flush()
+ser.open()
