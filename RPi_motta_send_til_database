@@ -10,8 +10,8 @@ f = open('sds011_logg.txt', 'w')
 ser = serial.Serial("/dev/ttyAMA0", baudrate=9600, stopbits=1, parity="N", timeout=1)
 
 #RestDB.io
-headers={'Content-Type': 'application/json', 'x-apikey':'bb97d93bb74a1cc36a2b12b4b9eb58544a952'}
-url="https://novasensordata-d99b.restdb.io/rest/airquality"
+headers={'Content-Type': 'application/json', 'x-apikey':'#############'} #sett inn egen apikey
+url="https://novasensordata-d99b.restdb.io/rest/airquality" #sett inn egen databse url
 location= [5.329214, 60.383332]
 
 while True:
