@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import serial
+import time
+from time import gmtime, strftime
+import json
+import requests
+
+f = open('sds011_logg.txt', 'w')
+ser = serial.Serial("/dev/ttyAMA0", baudrate=9600, stopbits=1, parity="N", timeout=1)
+
+#RestDB.io
+headers={'Content-Type': 'application/json', 'x-apikey':'bb97d93bb74a1cc36a2b12b4b9eb58544a952'}
+url="https://novasensordata-d99b.restdb.io/rest/airquality"
+location= [5.329214, 60.383332]
+
+while True:
+    try:
+        tid = strftime("%Y-%m-%d %H:%M:%S")
+        in_data = ser.readline()
+        dekodet = in_data.decode('utf8')
+
+        print(dekodet)
+        print(tid)
+
+        f.write(tid)
+        f.write(dekodet) #skriv til fil
+        f.write('\n\r')
+        f.close()
+        f=open('sds011_logg.txt', 'a')
+
+        data = {'Type': 'Sensordata',
+                'Value': in_data.decode('utf8'),
+                'Tid': tid}
+
+        r = requests.post(url, headers=headers, data=json.dumps(data))
+
+    except:
+            pass
+
