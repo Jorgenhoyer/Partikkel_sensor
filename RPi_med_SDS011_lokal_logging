@@ -15,8 +15,8 @@ import time  # this is only being used as part of the example
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, stopbits=1, parity="N",  timeout=2)
 port = serial.Serial("/dev/ttyAMA0", baudrate=9600, stopbits=1, parity="N",  timeout=2)
 
-# Deafults
-LOG_FILENAME = "/home/pi/Read_SDS011_write_xrf.log"
+# Endre stien og filnavnet til onsket lokasjon
+LOG_FILENAME = "/home/pi/din_logg_fil.log"
 LOG_LEVEL = logging.INFO  # Could be e.g. "DEBUG" or "WARNING"
 
 # Define and parse command line arguments
